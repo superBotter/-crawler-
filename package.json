@@ -1,0 +1,18 @@
+{
+  "name": "20170925",
+  "version": "1.0.0",
+  "description": "``` 浏览器存储技术 session   属于服务器端存储技术,session数据存储在web服务器中,只在当前会话(浏览器窗口)有效,关闭之后消失.session常用与少量重要信息的存储,因为其会花费服务器资源. cookies   属于客户端存储技术,不同浏览器存储的大小和位置不一样,每一个网站的cookies进行单独存储,最大不超过4kb.在实际开发的时候可以使用,不存在兼容性问题(大部分浏览器都支持).cookies可以自己设置过期时间.cookies存储的是字符串.每一次客户端和服务器交互的时候,都会把cookies数据通过http请求传递到服务器上. localStorage   属于现代浏览器存储技术,在老版本的浏览器中无法使用.localStorage存储大小不超过5M,以键值对的形式存储,不会过期、永久有限除非手动删除.每一个值存储的都是字符串. sessionStorage   和localStorage类似,唯一的区别是存储时间,sessionStorage只在当前会话(浏览器窗口)状态有效,关闭浏览器之后sessionStorage消失 ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "arivin",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "crawler": "^1.0.5",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "jquery": "^2.2.1"
+  }
+}

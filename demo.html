@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ajax跨域问题演示</title>
+</head>
+<body>
+  <input type="text" id="txt" placeholder="请输入筛选的关键字">
+  <ul id="list"></ul>
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script>
+    var allData = []; // 存储原始数据
+    $('#txt').keyup(function(){
+      var val = $(this).val();
+      var tem = allData.filter(function(v){
+        return v.title.toLowerCase().indexOf(val.toLowerCase())>-1
+      })
+      initHtml(tem);
+    })
+    /**
+     * jsonp是非官方的一种用法
+     *  只能做get请求使用
+     * 为了完全解决此问题,我们使用服务器端方式
+     *  为服务器端添加响应头可以解决跨域问题
+     * **/
+    $.ajax({
+      type: "get",
+      url: "http://localhost:3000/goods.do",
+      dataType: "json",
+      success: function (res) {
+        allData = res;
+        initHtml(allData);
+        // console.log('获取数据成功!')
+        // console.log(res);
+        // var strHtml = ''
+        // res.forEach(function(item){
+        //   strHtml += '<li>'
+        //     +'<img src="'+item.img+'"/>'
+        //     +'<p>'+item.title+'</p></li>';
+        // })
+        // $('#list').html(strHtml);
+      }
+    });
+    function initHtml(arr){
+      var strHtml = ''
+      arr.forEach(function(item){
+        strHtml += '<li>'
+          +'<img src="'+item.img+'"/>'
+          +'<p>'+item.title+'</p></li>';
+      })
+      $('#list').html(strHtml);
+    }
+  </script>
+</body>
+</html>
